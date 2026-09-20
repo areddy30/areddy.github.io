@@ -1,6 +1,6 @@
 # areddy30.github.io
 
-Personal site for **Avinash Reddy** — Staff Site Reliability Engineer.
+Personal site for **Avinash Reddy** — Site Reliability Engineer.
 
 Live at **https://areddy30.github.io**
 

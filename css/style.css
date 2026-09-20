@@ -295,6 +295,15 @@ code {
   transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
 }
 .skill:hover { border-color: var(--border-hi); background: var(--card-hi); }
+/* 11 cards: let the last one fill its row so no orphan gap is left */
+@media (min-width: 1000px) {
+  .skills { grid-template-columns: repeat(3, 1fr); }
+  .skill:last-child { grid-column: span 2; }
+}
+@media (min-width: 641px) and (max-width: 999px) {
+  .skills { grid-template-columns: repeat(2, 1fr); }
+  .skill:last-child { grid-column: span 2; }
+}
 .skill h3 {
   font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--accent); margin-bottom: 0.55rem;
