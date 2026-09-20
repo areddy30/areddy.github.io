@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taking ~$1.5M a Year Out of the AWS Bill — Avinash Reddy</title>
+<meta name="description" content="Redesigned Karpenter node pools around Graviton, spot, and ephemeral capacity, then tiered cold storage and logs — roughly $1.5M off annual AWS spend.">
+<link rel="canonical" href="https://areddy30.github.io/work/cloud-cost-optimization.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Taking ~$1.5M a Year Out of the AWS Bill — Avinash Reddy">
+<meta property="og:description" content="Redesigned Karpenter node pools around Graviton, spot, and ephemeral capacity, then tiered cold storage and logs — roughly $1.5M off annual AWS spend.">
+<meta property="og:url" content="https://areddy30.github.io/work/cloud-cost-optimization.html">
+<meta property="og:image" content="https://areddy30.github.io/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0D10">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<!-- Marks the document as script-enabled before first paint, so the reveal animation's
+     opacity:0 only applies when JS can undo it (otherwise a JS-off visitor sees a blank page). -->
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="../" aria-label="Avinash Reddy, home">
+      <span class="brand__mark" aria-hidden="true">AR</span>
+      <span class="brand__text">
+        <span class="brand__name">Avinash Reddy</span>
+        <span class="brand__role">Site Reliability Engineer</span>
+      </span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="../#work">Work</a>
+      <a href="../#experience">Experience</a>
+      <a href="../#skills">Skills</a>
+      <a href="https://www.linkedin.com/in/avinashreddy30" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+      <a href="../assets/resume.pdf" download>Résumé <span aria-hidden="true">↓</span></a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="wrap">
+    <a class="crumb" href="../#work"><span aria-hidden="true">←</span> All work</a>
+
+    <p class="eyebrow page__eyebrow reveal">01 · Cloud Cost Engineering</p>
+    <h1 class="page__title reveal">Taking ~$1.5M a Year Out of the AWS Bill</h1>
+    <p class="page__lede reveal">Right-sizing compute, storage, and observability spend across the fleet — without asking a single team to give up headroom they were actually using.</p>
+
+    <ul class="highlights reveal" aria-label="Highlights">
+        <li class="hl"><span class="hl__fig">~$1.5M</span><span class="hl__label">annual run-rate savings</span></li>
+        <li class="hl"><span class="hl__fig">~$1M</span><span class="hl__label">off annual compute spend</span></li>
+        <li class="hl"><span class="hl__fig">$450K+</span><span class="hl__label">off storage, via IA tiering</span></li>
+    </ul>
+
+    <div class="story reveal">
+        <section><h2>Problem</h2><p>The AWS bill was growing faster than the platform underneath it. Across 30+ EKS clusters serving 100+ engineering teams, nobody owned cost as a first-class concern — teams sized their workloads for peak and moved on, which is the rational thing to do when reliability is your mandate and the bill lands on someone else's desk. The result was a fleet running mostly on general-purpose on-demand instances, storage volumes nobody had touched in months sitting in the hottest tier, and log data retained as though every line would be read tomorrow.</p></section>
+        <section><h2>Compute: matching instances to workloads</h2><p>Karpenter was already provisioning nodes. It was not provisioning them cheaply. I redesigned the node pool topology around what workloads actually need rather than what is easiest to default to: Graviton pools for everything that could run on ARM, AMD-based instances where price-performance beat the Intel equivalent, compute-optimized families for CPU-bound services, and dedicated GPU pools sized to real accelerator demand instead of oversized general-purpose nodes carrying a GPU along for the ride. Spot capacity took the workloads that tolerate interruption, with on-demand fallback so a spot reclaim degraded throughput rather than availability.</p></section>
+        <section><h2>Compute: ephemeral pools for ephemeral work</h2><p>The larger structural win was separating transient work from steady-state work. Batch jobs and other short-lived workloads had been scheduled onto the same long-lived nodes as always-on services, which quietly meant the entire fleet stayed sized for peak batch around the clock. Giving them dedicated ephemeral node pools let Karpenter consolidate and terminate that capacity the moment the work finished, so the cluster stopped paying for idle nodes in the gaps between runs.</p></section>
+        <section><h2>Storage: finding the data nobody was reading</h2><p>Then I went looking for what nobody was watching. An audit of EBS and EFS volumes across the account estate turned up a substantial amount of data sitting in standard tiers that had not been accessed in months. Lifecycle policies now move anything untouched for 30 days into infrequent-access tiers: the data stays exactly where it was and stays available on demand, it simply stops being billed at hot-tier rates while it sits idle.</p></section>
+        <section><h2>Observability: paying premium rates for logs nobody queried</h2><p>The same pattern showed up in Sumo Logic. Comparing actual query patterns against what we were ingesting made it clear that most of the data we paid to keep continuously searchable was almost never searched — retained out of caution rather than need. Moving it to the infrequent tier cut the cost without losing anything that mattered: the logs are still there when an investigation calls for them, they just stop commanding premium rates while nobody is looking at them.</p></section>
+        <section><h2>Impact</h2><p>Roughly $1M a year off compute, $450K+ off storage, and six figures off the observability bill — about $1.5M in annual run-rate savings, with no service degradation and no team asked to surrender capacity they were genuinely using. Almost all of it came from matching resources to real demand rather than from austerity, which is precisely why it held: the node pool topology and the lifecycle policies keep doing their job without anyone maintaining a spreadsheet or chasing teams to tidy up.</p></section>
+    </div>
+
+    <ul class="tags reveal">
+        <li>Karpenter</li>
+        <li>AWS Graviton</li>
+        <li>EC2 Spot</li>
+        <li>Amazon EKS</li>
+        <li>EBS · EFS</li>
+        <li>Sumo Logic</li>
+        <li>FinOps</li>
+        <li>Terraform</li>
+    </ul>
+
+    <nav class="pager" aria-label="More projects"><span></span><a class="pager__next" href="ai-kubernetes-operations.html"><span class="pager__dir">Next project →</span><span class="pager__title">AI-Augmented Kubernetes Operations</span></a></nav>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <span>© <span id="year">2026</span> Avinash Reddy</span>
+    <span>Built with plain HTML, CSS, and JavaScript. No frameworks.</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

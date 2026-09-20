@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reliability as a Measurable Practice — Avinash Reddy</title>
+<meta name="description" content="Defined SLOs and error budgets tied to feature prioritization, and led incident response and blameless postmortems.">
+<link rel="canonical" href="https://areddy30.github.io/work/reliability-practice.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reliability as a Measurable Practice — Avinash Reddy">
+<meta property="og:description" content="Defined SLOs and error budgets tied to feature prioritization, and led incident response and blameless postmortems.">
+<meta property="og:url" content="https://areddy30.github.io/work/reliability-practice.html">
+<meta property="og:image" content="https://areddy30.github.io/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0D10">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<!-- Marks the document as script-enabled before first paint, so the reveal animation's
+     opacity:0 only applies when JS can undo it (otherwise a JS-off visitor sees a blank page). -->
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="../" aria-label="Avinash Reddy, home">
+      <span class="brand__mark" aria-hidden="true">AR</span>
+      <span class="brand__text">
+        <span class="brand__name">Avinash Reddy</span>
+        <span class="brand__role">Site Reliability Engineer</span>
+      </span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="../#work">Work</a>
+      <a href="../#experience">Experience</a>
+      <a href="../#skills">Skills</a>
+      <a href="https://www.linkedin.com/in/avinashreddy30" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+      <a href="../assets/resume.pdf" download>Résumé <span aria-hidden="true">↓</span></a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="wrap">
+    <a class="crumb" href="../#work"><span aria-hidden="true">←</span> All work</a>
+
+    <p class="eyebrow page__eyebrow reveal">04 · Reliability Engineering</p>
+    <h1 class="page__title reveal">Reliability as a Measurable Practice</h1>
+    <p class="page__lede reveal">Turning "we should be more reliable" into a budget teams can actually plan against.</p>
+
+    <ul class="highlights reveal" aria-label="Highlights">
+        <li class="hl"><span class="hl__fig">30+</span><span class="hl__label">clusters under SLOs</span></li>
+        <li class="hl"><span class="hl__fig">100+</span><span class="hl__label">teams in reliability reviews</span></li>
+        <li class="hl"><span class="hl__fig">3+</span><span class="hl__label">SREs mentored</span></li>
+    </ul>
+
+    <div class="story reveal">
+        <section><h2>Problem</h2><p>Reliability without numbers is an opinion, and opinions lose to feature deadlines. Teams knew incidents were bad but had no shared, quantitative basis for deciding when stability should outrank velocity — so the decision defaulted to velocity every time, until something broke badly enough to reset the argument.</p></section>
+        <section><h2>Approach</h2><p>Defined SLIs, SLOs, and error budgets grounded in EKS cluster health metrics and add-on component monitors across the fleet, then tied error budget consumption directly to feature prioritization — when the budget is spent, reliability work takes the slot, and that is a rule rather than a negotiation. Owned the incident lifecycle end to end: detection, response, communication, postmortem quality, and follow-up completion for high-severity customer-facing incidents. Ran reliability reviews for high-risk changes and new services covering production readiness, capacity, failure modes, and rollback — framed as teaching rather than gatekeeping, because a review that only blocks does not scale to 100+ teams. Mentored 3+ SREs and codified production readiness checklists and on-call standards built to outlive my involvement.</p></section>
+        <section><h2>Impact</h2><p>Repeat incidents declined through blameless postmortems that produced genuine follow-through rather than tickets nobody closes. Reliability became something teams could plan against instead of a value they were told to hold. The checklists and on-call standards persisted after I stepped back — the only real test of whether a practice took.</p></section>
+    </div>
+
+    <ul class="tags reveal">
+        <li>SLIs &amp; SLOs</li>
+        <li>Error budgets</li>
+        <li>Incident command</li>
+        <li>Blameless postmortems</li>
+        <li>Production readiness reviews</li>
+        <li>Datadog</li>
+    </ul>
+
+    <nav class="pager" aria-label="More projects"><a class="pager__prev" href="multi-region-eks-platform.html"><span class="pager__dir">← Previous project</span><span class="pager__title">Multi-Region EKS Platform at Scale</span></a><a class="pager__next" href="sox-cluster-decommissioning.html"><span class="pager__dir">Next project →</span><span class="pager__title">SOX-Compliant Cluster Decommissioning</span></a></nav>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <span>© <span id="year">2026</span> Avinash Reddy</span>
+    <span>Built with plain HTML, CSS, and JavaScript. No frameworks.</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

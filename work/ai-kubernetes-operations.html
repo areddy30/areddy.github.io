@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI-Augmented Kubernetes Operations — Avinash Reddy</title>
+<meta name="description" content="Specified repetitive cluster operations as PRDs, then encoded them as AI skills — 20+ workflows spanning rollout testing, cluster lifecycle, and triage.">
+<link rel="canonical" href="https://areddy30.github.io/work/ai-kubernetes-operations.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI-Augmented Kubernetes Operations — Avinash Reddy">
+<meta property="og:description" content="Specified repetitive cluster operations as PRDs, then encoded them as AI skills — 20+ workflows spanning rollout testing, cluster lifecycle, and triage.">
+<meta property="og:url" content="https://areddy30.github.io/work/ai-kubernetes-operations.html">
+<meta property="og:image" content="https://areddy30.github.io/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0D10">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<!-- Marks the document as script-enabled before first paint, so the reveal animation's
+     opacity:0 only applies when JS can undo it (otherwise a JS-off visitor sees a blank page). -->
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="../" aria-label="Avinash Reddy, home">
+      <span class="brand__mark" aria-hidden="true">AR</span>
+      <span class="brand__text">
+        <span class="brand__name">Avinash Reddy</span>
+        <span class="brand__role">Site Reliability Engineer</span>
+      </span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="../#work">Work</a>
+      <a href="../#experience">Experience</a>
+      <a href="../#skills">Skills</a>
+      <a href="https://www.linkedin.com/in/avinashreddy30" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+      <a href="../assets/resume.pdf" download>Résumé <span aria-hidden="true">↓</span></a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="wrap">
+    <a class="crumb" href="../#work"><span aria-hidden="true">←</span> All work</a>
+
+    <p class="eyebrow page__eyebrow reveal">02 · AI-Augmented Operations</p>
+    <h1 class="page__title reveal">AI-Augmented Kubernetes Operations</h1>
+    <p class="page__lede reveal">Repetitive cluster work specified as PRDs and encoded as reusable AI skills, so operational knowledge lives in version control instead of in whoever did it last.</p>
+
+    <ul class="highlights reveal" aria-label="Highlights">
+        <li class="hl"><span class="hl__fig">20+</span><span class="hl__label">operations encoded as AI skills</span></li>
+        <li class="hl"><span class="hl__fig">40%+</span><span class="hl__label">operational toil eliminated</span></li>
+        <li class="hl"><span class="hl__fig">30+</span><span class="hl__label">EKS clusters operated this way</span></li>
+    </ul>
+
+    <div class="story reveal">
+        <section><h2>Problem</h2><p>Running 30+ EKS clusters for 100+ engineering teams means doing the same work over and over: validate an add-on upgrade, roll a Kubernetes version through the fleet, stand up a cluster, tear one down, work out why a node pool is misbehaving. Each of those is well understood by whoever performed it last and largely opaque to everyone else. The knowledge lived in people's heads and in runbooks that went stale between uses, which made experienced engineers a bottleneck for routine work — and made routine work risky whenever they were unavailable.</p></section>
+        <section><h2>Approach: the PRD comes first</h2><p>I treated each recurring operation as a product rather than a script. Every one begins as a PRD — what the operation must do, what it must never do, what "done" looks like, which failure modes it has to detect and how it should behave when it hits one — and only then becomes an AI skill that implements it. Writing the requirement down first is what makes the automation reviewable. The spec is the artifact the team argues about and signs off on; the skill is just the implementation of an agreement that already exists.</p></section>
+        <section><h2>Approach: what the skills cover</h2><p>The skills target the operations that repeat most. Rollout and upgrade testing validates a version bump against a canary cluster and verifies its health before it advances to the next wave. Cluster lifecycle skills handle provisioning through decommissioning. Incident skills do first-pass investigation, gathering Datadog and <code>kubectl</code> context before a human joins the call. Capacity and cost skills surface right-sizing candidates and idle resources — the analysis layer underneath the cost work. All of them chain tools already in the stack, in Python and Bash, so nothing new had to be adopted for any of it to work.</p></section>
+        <section><h2>Impact</h2><p>20+ encoded workflows and a 40%+ reduction in operational toil. Upgrade work changed shape most visibly: validating a version bump went from half a day of manual checking to a repeatable, reviewable procedure that produces the same evidence every time. The more durable outcome is that because every skill has a PRD behind it, the fleet's operational knowledge now sits in version control where it can be reviewed, corrected, and improved — rather than in the memory of whoever happened to run it last.</p></section>
+    </div>
+
+    <ul class="tags reveal">
+        <li>Python</li>
+        <li>Bash</li>
+        <li>kubectl</li>
+        <li>Terraform</li>
+        <li>Datadog</li>
+        <li>Generative AI</li>
+        <li>Amazon EKS</li>
+    </ul>
+
+    <nav class="pager" aria-label="More projects"><a class="pager__prev" href="cloud-cost-optimization.html"><span class="pager__dir">← Previous project</span><span class="pager__title">Taking ~$1.5M a Year Out of the AWS Bill</span></a><a class="pager__next" href="multi-region-eks-platform.html"><span class="pager__dir">Next project →</span><span class="pager__title">Multi-Region EKS Platform at Scale</span></a></nav>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <span>© <span id="year">2026</span> Avinash Reddy</span>
+    <span>Built with plain HTML, CSS, and JavaScript. No frameworks.</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>

@@ -3,7 +3,36 @@
   <url>
     <loc>https://areddy30.github.io/</loc>
     <lastmod>2026-09-19</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://areddy30.github.io/work/cloud-cost-optimization.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://areddy30.github.io/work/ai-kubernetes-operations.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://areddy30.github.io/work/multi-region-eks-platform.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://areddy30.github.io/work/reliability-practice.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://areddy30.github.io/work/sox-cluster-decommissioning.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://areddy30.github.io/work/intuit-aws-migration.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <priority>0.8</priority>
   </url>
 </urlset>

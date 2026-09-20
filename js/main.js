@@ -83,8 +83,10 @@
   var figs = document.querySelectorAll('.metric__fig');
 
   function countUp(el) {
-    var target = parseInt(el.getAttribute('data-count'), 10);
+    var target = parseFloat(el.getAttribute('data-count'));
+    var prefix = el.getAttribute('data-prefix') || '';
     var suffix = el.getAttribute('data-suffix') || '';
+    var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
     if (isNaN(target)) return;
 
     var duration = 1100;
@@ -95,9 +97,9 @@
       var progress = Math.min((ts - start) / duration, 1);
       // easeOutExpo
       var eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      el.textContent = Math.round(target * eased) + suffix;
+      el.textContent = prefix + (target * eased).toFixed(decimals) + suffix;
       if (progress < 1) window.requestAnimationFrame(step);
-      else el.textContent = target + suffix;
+      else el.textContent = prefix + target.toFixed(decimals) + suffix;
     }
     window.requestAnimationFrame(step);
   }

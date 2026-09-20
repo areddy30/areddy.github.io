@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multi-Region EKS Platform at Scale — Avinash Reddy</title>
+<meta name="description" content="Owned the full lifecycle of 30+ EKS clusters across AWS regions, with wave-based, zero-downtime rollouts for 100+ teams.">
+<link rel="canonical" href="https://areddy30.github.io/work/multi-region-eks-platform.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Multi-Region EKS Platform at Scale — Avinash Reddy">
+<meta property="og:description" content="Owned the full lifecycle of 30+ EKS clusters across AWS regions, with wave-based, zero-downtime rollouts for 100+ teams.">
+<meta property="og:url" content="https://areddy30.github.io/work/multi-region-eks-platform.html">
+<meta property="og:image" content="https://areddy30.github.io/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0D10">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<!-- Marks the document as script-enabled before first paint, so the reveal animation's
+     opacity:0 only applies when JS can undo it (otherwise a JS-off visitor sees a blank page). -->
+<script>document.documentElement.className += ' js';</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="../" aria-label="Avinash Reddy, home">
+      <span class="brand__mark" aria-hidden="true">AR</span>
+      <span class="brand__text">
+        <span class="brand__name">Avinash Reddy</span>
+        <span class="brand__role">Site Reliability Engineer</span>
+      </span>
+    </a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
+      <a href="../#work">Work</a>
+      <a href="../#experience">Experience</a>
+      <a href="../#skills">Skills</a>
+      <a href="https://www.linkedin.com/in/avinashreddy30" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+      <a href="../assets/resume.pdf" download>Résumé <span aria-hidden="true">↓</span></a>
+    </nav>
+
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="page">
+  <div class="wrap">
+    <a class="crumb" href="../#work"><span aria-hidden="true">←</span> All work</a>
+
+    <p class="eyebrow page__eyebrow reveal">03 · Platform Engineering</p>
+    <h1 class="page__title reveal">Multi-Region EKS Platform at Scale</h1>
+    <p class="page__lede reveal">Full lifecycle ownership of 30+ production clusters, changed without downtime.</p>
+
+    <ul class="highlights reveal" aria-label="Highlights">
+        <li class="hl"><span class="hl__fig">30+</span><span class="hl__label">EKS clusters, multi-region</span></li>
+        <li class="hl"><span class="hl__fig">100+</span><span class="hl__label">engineering teams served</span></li>
+        <li class="hl"><span class="hl__fig">Zero</span><span class="hl__label">downtime infrastructure changes</span></li>
+    </ul>
+
+    <div class="story reveal">
+        <section><h2>Problem</h2><p>Thirty-plus production Kubernetes clusters across multiple AWS regions, serving 100+ engineering teams who ship continuously. Any platform change — a Kubernetes version bump, a CNI upgrade, an add-on rollout — is simultaneously a change to every team's production environment. A bad rollout doesn't break one service; it breaks the company.</p></section>
+        <section><h2>Approach</h2><p>A wave-based rollout strategy: changes propagate through defined cluster tiers with bake time and health verification between waves, so a regression surfaces in a low-stakes wave long before it reaches revenue-critical clusters. Terraform as the single source of truth across the fleet, enforcing cloud security standards and SOX-compliant governance uniformly rather than cluster by cluster. A core platform stack of Cilium for networking, Istio for service mesh, and ArgoCD for GitOps-driven delivery, with Karpenter handling node provisioning across the fleet.</p></section>
+        <section><h2>Impact</h2><p>Zero-downtime infrastructure changes across the production fleet, and 100+ teams shipping without having to think about the platform beneath them — which is the entire point of the job.</p></section>
+    </div>
+
+    <ul class="tags reveal">
+        <li>Amazon EKS</li>
+        <li>Cilium</li>
+        <li>Istio</li>
+        <li>ArgoCD</li>
+        <li>Terraform</li>
+        <li>Helm</li>
+    </ul>
+
+    <nav class="pager" aria-label="More projects"><a class="pager__prev" href="ai-kubernetes-operations.html"><span class="pager__dir">← Previous project</span><span class="pager__title">AI-Augmented Kubernetes Operations</span></a><a class="pager__next" href="reliability-practice.html"><span class="pager__dir">Next project →</span><span class="pager__title">Reliability as a Measurable Practice</span></a></nav>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__inner">
+    <span>© <span id="year">2026</span> Avinash Reddy</span>
+    <span>Built with plain HTML, CSS, and JavaScript. No frameworks.</span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
