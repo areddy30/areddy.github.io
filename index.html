@@ -26,6 +26,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 
+<!-- Marks the document as script-enabled BEFORE first paint, so the reveal
+     animation's initial opacity:0 only applies when JS can undo it.
+     Without this, a visitor with JS disabled sees a blank page. -->
+<script>document.documentElement.className += ' js';</script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -404,26 +409,35 @@
         <div class="skill"><h3>Languages Spoken</h3><p>English · Telugu · Tamil · Hindi</p></div>
       </div>
 
-      <div class="creds reveal">
-        <div class="cred">
-          <h3>Certified Kubernetes Administrator</h3>
-          <p>CKA — Cloud Native Computing Foundation</p>
+      <div class="reveal">
+        <h3 class="subhead">Certifications</h3>
+        <div class="creds creds--3">
+          <div class="cred">
+            <h4>Certified Kubernetes Administrator</h4>
+            <p>CKA — Cloud Native Computing Foundation</p>
+          </div>
+          <div class="cred">
+            <h4>AWS Certified Solutions Architect</h4>
+            <p>Amazon Web Services</p>
+          </div>
+          <div class="cred">
+            <h4>GitOps Certified for Argo</h4>
+            <p>GitOps at Scale — Level II</p>
+          </div>
         </div>
-        <div class="cred">
-          <h3>AWS Certified Solutions Architect</h3>
-          <p>Amazon Web Services</p>
-        </div>
-        <div class="cred">
-          <h3>GitOps Certified for Argo</h3>
-          <p>GitOps at Scale — Level II</p>
-        </div>
-        <div class="cred">
-          <h3>Stanford LEAD — Personal Leadership</h3>
-          <p>Stanford University Graduate School of Business · 2019–2021</p>
-        </div>
-        <div class="cred">
-          <h3>B.E. Electronics &amp; Communications</h3>
-          <p>Anna University</p>
+      </div>
+
+      <div class="reveal">
+        <h3 class="subhead">Education</h3>
+        <div class="creds creds--2">
+          <div class="cred">
+            <h4>Stanford LEAD — Personal Leadership</h4>
+            <p>Stanford University Graduate School of Business · 2019–2021</p>
+          </div>
+          <div class="cred">
+            <h4>B.E. Electronics &amp; Communications</h4>
+            <p>Anna University</p>
+          </div>
         </div>
       </div>
     </div>

@@ -87,17 +87,19 @@ code {
   padding-inline: var(--gutter);
 }
 
-/* ---------- Scroll reveal ---------- */
-.reveal {
+/* ---------- Scroll reveal ----------
+   Scoped to .js so that without JavaScript the content renders normally
+   instead of staying at opacity:0 forever. */
+.js .reveal {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }
-.reveal.is-in { opacity: 1; transform: none; }
+.js .reveal.is-in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
@@ -177,6 +179,9 @@ code {
   padding-top: calc(var(--nav-h) + 7rem);
   padding-bottom: var(--s6);
   position: relative;
+  /* Clips the decorative glow below, which is wider than small viewports
+     and would otherwise create horizontal scroll. */
+  overflow: hidden;
 }
 .hero::before {
   content: ''; position: absolute; top: 0; left: 50%;
@@ -278,7 +283,8 @@ code {
 .case { display: grid; grid-template-columns: 90px 1fr; gap: var(--s3); }
 .case__num {
   font-family: var(--mono); font-weight: 700; font-size: 1.5rem;
-  color: var(--border-lit);
+  /* 3.8:1 against --bg — legible as a wayfinding label, not just texture */
+  color: #646E7E;
   padding-top: 0.2rem;
   letter-spacing: -0.02em;
   transition: color 0.4s var(--ease);
@@ -365,11 +371,17 @@ code {
 }
 .skill p { color: var(--text-mid); font-size: 0.9375rem; line-height: 1.6; }
 
-.creds {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: var(--s2);
+.subhead {
+  font-family: var(--mono); font-size: 0.75rem;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--text-dim); font-weight: 500;
+  margin-bottom: var(--s2);
 }
+
+.creds { display: grid; gap: var(--s2); margin-bottom: var(--s4); }
+.creds--3 { grid-template-columns: repeat(3, 1fr); }
+.creds--2 { grid-template-columns: repeat(2, 1fr); }
+
 .cred {
   border: 1px solid var(--border); border-radius: 10px;
   padding: var(--s3);
@@ -377,7 +389,7 @@ code {
   transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
 }
 .cred:hover { border-color: var(--border-lit); transform: translateY(-2px); }
-.cred h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+.cred h4 { font-size: 1rem; margin-bottom: 0.3rem; }
 .cred p { font-size: 0.875rem; color: var(--text-dim); }
 
 /* =========================================================
@@ -449,6 +461,7 @@ code {
   .case__num { font-size: 1.125rem; padding-top: 0; }
   .role { grid-template-columns: 1fr; gap: 0.75rem; }
   .role__meta { flex-direction: row; gap: 0.75rem; padding-top: 0; }
+  .creds--3, .creds--2 { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 560px) {
@@ -458,6 +471,7 @@ code {
   .metric:last-child { grid-column: span 2; }
   .hero__actions .btn, .contact__links .btn { flex: 1 1 auto; justify-content: center; }
   .case__title { font-size: 1.4375rem; }
+  .creds--3, .creds--2 { grid-template-columns: 1fr; }
   .foot__inner { flex-direction: column; align-items: flex-start; }
 }
 
@@ -467,7 +481,7 @@ code {
 @media print {
   .nav, .hero__actions, .contact__links, .foot__mono { display: none; }
   body { background: #fff; color: #000; font-size: 11pt; }
-  .reveal { opacity: 1; transform: none; }
+  .js .reveal { opacity: 1 !important; transform: none !important; }
   .hero { padding-top: 0; }
   .section { padding-block: 1.5rem; page-break-inside: avoid; }
   .hero__title, .section__title, .case__title, .role__title { color: #000; }
